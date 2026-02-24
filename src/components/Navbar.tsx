@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
           <div className="bg-blue-600 p-1.5 rounded-lg">
             <Code2 size={20} className="text-white" />
           </div>
-          <span className="bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-white to-slate-400 bg-clip-text text-transparent">
             AS.
           </span>
         </Link>

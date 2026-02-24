@@ -1,5 +1,4 @@
 // src/data.ts
-// src/data.ts
 import type { PortfolioData } from './types';
 
 export const initialData: PortfolioData = {

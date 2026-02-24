@@ -1,2 +1,25 @@
-/* src/index.css */
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #3b82f6; /* Blue */
+    --color-secondary: #64748b;
+    --color-accent: #2563eb;
+  }
+
+  /* Custom Theme: Emerald */
+  [data-theme='emerald'] {
+    --color-primary: #10b981;
+    --color-accent: #059669;
+  }
+
+  /* Default Light Mode Styles */
+  body {
+    @apply bg-white text-slate-900 transition-colors duration-300;
+  }
+
+  /* Dark Mode Styles */
+  .dark body {
+    @apply bg-slate-950 text-slate-100;
+  }
+}

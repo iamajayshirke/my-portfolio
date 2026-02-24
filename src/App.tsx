@@ -17,21 +17,21 @@ const App: React.FC = () => {
   }, []);
 
   const updateData = (newData: PortfolioData) => {
-    setData(newData);
-    localStorage.setItem('portfolio_data', JSON.stringify(newData));
+    setData(newData); // Updates the UI immediately
+    localStorage.setItem('portfolio_data', JSON.stringify(newData)); // Saves for refresh
   };
 
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-100 selection:bg-blue-500/30">
+    <div className="dark:bg-slate-950 bg-white transition-colors">
       <Navbar />
-      
-      {/* FIX: This wrapper ensures the Home page and Admin page 
-          start at the exact same 'x' coordinate as the Navbar content.
-      */}
       <div className="max-w-5xl mx-auto px-6">
         <Routes>
-          <Route path="/" element={<Home data={data} />} />
-          <Route path="/admin-portal-xyz" element={<AdminLogin data={data} onSave={updateData} />} />
+          {/* CRITICAL: Pass 'data' (state), NOT 'initialData' */}
+          <Route path="/" element={<Home data={data} />} /> 
+          <Route 
+            path="/admin-portal-xyz" 
+            element={<AdminLogin data={data} onSave={updateData} />} 
+          />
         </Routes>
       </div>
     </div>
