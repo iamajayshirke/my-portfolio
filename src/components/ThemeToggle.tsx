@@ -2,21 +2,34 @@ import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 
 export const ThemeToggle = () => {
-  const { isDark, toggleDark, setColorTheme } = useTheme();
-
-//   console.log(isDark,"IsDark", toggleDark)
+  const { isDark, toggleDark, colorTheme, setColorTheme } = useTheme();
 
   return (
     <div className="flex items-center gap-4">
-      {/* Dark/Light Toggle */}
-      <button onClick={toggleDark} className="p-2 rounded-full hover:bg-slate-800/50 transition">
-        {isDark ? <Sun size={20} className="text-yellow-400" /> : <Moon size={20} className="text-slate-600" />}
+      {/* Mode Toggle */}
+      <button 
+        onClick={toggleDark} 
+        className="p-2 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-primary transition-all active:scale-95"
+      >
+        {isDark ? (
+          <Sun size={18} className="text-yellow-400" />
+        ) : (
+          <Moon size={18} className="text-blue-500" />
+        )}
       </button>
 
-      {/* Color Theme Selector */}
-      <div className="flex gap-2 bg-slate-800/20 p-1.5 rounded-full border border-slate-700">
-        <button onClick={() => setColorTheme('default')} className="w-5 h-5 rounded-full bg-blue-500" title="Default" />
-        <button onClick={() => setColorTheme('emerald')} className="w-5 h-5 rounded-full bg-emerald-500" title="Emerald" />
+      {/* Theme Selector */}
+      <div className="flex gap-2 bg-[var(--card-bg)] p-1.5 rounded-xl border border-[var(--card-border)]">
+        <button 
+          onClick={() => setColorTheme('default')} 
+          className={`w-6 h-6 rounded-lg bg-blue-500 transition-transform hover:scale-110 ${colorTheme === 'default' ? 'ring-2 ring-offset-2 ring-blue-500 ring-offset-[var(--bg-color)]' : ''}`} 
+          title="Blue Professional" 
+        />
+        <button 
+          onClick={() => setColorTheme('emerald')} 
+          className={`w-6 h-6 rounded-lg bg-emerald-500 transition-transform hover:scale-110 ${colorTheme === 'emerald' ? 'ring-2 ring-offset-2 ring-emerald-500 ring-offset-[var(--bg-color)]' : ''}`} 
+          title="Emerald Growth" 
+        />
       </div>
     </div>
   );

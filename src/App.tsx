@@ -22,19 +22,18 @@ const App: React.FC = () => {
   };
 
   return (
-   <div className="dark:bg-slate-950 bg-slate-50 min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-300">
-      <Navbar />
-      <div className="max-w-5xl mx-auto px-6">
-        <Routes>
-          {/* CRITICAL: Pass 'data' (state), NOT 'initialData' */}
-          <Route path="/" element={<Home data={data} />} /> 
-          <Route 
-            path="/admin-portal-xyz" 
-            element={<AdminLogin data={data} onSave={updateData} />} 
-          />
-        </Routes>
-      </div>
+   <div className="min-h-screen transition-colors duration-300">
+    <Navbar />
+    <div className="max-w-5xl mx-auto px-6">
+      <Routes>
+        <Route path="/" element={<Home data={data} />} /> 
+        <Route 
+          path="/admin-portal-xyz" 
+          element={<AdminLogin data={data} onSave={updateData} />} 
+        />
+      </Routes>
     </div>
+  </div>
   );
 };
 

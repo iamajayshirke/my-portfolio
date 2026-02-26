@@ -1,19 +1,30 @@
-import React from 'react';
-import { Briefcase, Terminal, GraduationCap, Mail, ExternalLink, Code2, Sparkles } from 'lucide-react';
-import type { PortfolioData } from '../types';
-import { ThemeToggle } from '../components/ThemeToggle'; // Import the new toggle
+import React from "react";
+import {
+  Briefcase,
+  Terminal,
+  GraduationCap,
+  Mail,
+  ExternalLink,
+  Code2,
+  Sparkles,
+} from "lucide-react";
+import type { PortfolioData } from "../types";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 interface HomeProps {
   data: PortfolioData;
 }
 
 const Home: React.FC<HomeProps> = ({ data }) => {
+  console.log(data,"Data")
   return (
+    /* Removing all hardcoded 'bg-slate' classes to let the 
+       CSS Variables in index.css handle the theme switching.
+    */
     <main className="pt-20 pb-20 space-y-32 transition-colors duration-500">
-      
-      {/* Theme & Mode Switcher Floating Bar */}
+      {/* Floating Theme Bar */}
       <div className="flex justify-end sticky top-24 z-40 pr-4">
-        <div className="bg-slate-900/50 backdrop-blur-md p-2 rounded-2xl border border-slate-800 shadow-xl">
+        <div className="bg-(--card-bg) backdrop-blur-md p-2 rounded-2xl border border-[var(--card-border)] shadow-xl">
           <ThemeToggle />
         </div>
       </div>
@@ -24,18 +35,24 @@ const Home: React.FC<HomeProps> = ({ data }) => {
           <p className="text-primary font-mono font-medium tracking-wider uppercase text-sm flex items-center gap-2">
             <Sparkles size={16} /> Available for new opportunities
           </p>
-          <h1 className="text-6xl md:text-7xl font-black tracking-tight dark:text-white text-slate-900">
+          <h1 className="text-6xl md:text-7xl font-black tracking-tight text-[var(--text-main)]">
             {data.name}
           </h1>
         </div>
-        <p className="text-xl md:text-2xl text-secondary max-w-2xl leading-relaxed">
-          {data.role} with <span className="text-primary font-semibold">{data.experience}</span> of experience building high-performance systems and scalable data pipelines.
+        <p className="text-xl md:text-2xl text-[var(--text-sec)] max-w-2xl leading-relaxed">
+          {data.role} with{" "}
+          <span className="text-primary font-semibold">{data.experience}</span>{" "}
+          of experience building high-performance systems and scalable data
+          pipelines.
         </p>
         <div className="flex gap-4 pt-4">
-          <a href="#contact" className="px-6 py-3 bg-primary hover:bg-accent text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/20">
+          <a
+            href="#contact"
+            className="px-6 py-3 bg-(--card-bg) border hover:bg-accent text-(--text-main) font-bold rounded-xl transition-all shadow-lg shadow-primary/20"
+          >
             Get in touch
           </a>
-          <button className="px-6 py-3 dark:bg-slate-900 bg-slate-100 border border-slate-800 hover:border-slate-700 dark:text-white text-slate-900 font-bold rounded-xl transition-all">
+          <button className="px-6 py-3 bg-(--card-bg) border  text-(--text-main) font-bold rounded-xl transition-all hover:border-primary/50">
             View Resume
           </button>
         </div>
@@ -45,41 +62,53 @@ const Home: React.FC<HomeProps> = ({ data }) => {
       <section id="projects" className="space-y-12">
         <div className="flex items-center gap-3 text-primary">
           <Code2 size={28} />
-          <h2 className="text-3xl font-bold dark:text-white text-slate-900">Featured Projects</h2>
+          <h2 className="text-3xl font-bold text-[var(--text-main)]">
+            Featured Projects
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {data.projects.map((project) => (
-            <div key={project.id} className="group dark:bg-slate-900/40 bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden hover:border-primary/50 transition-all">
+            <div
+              key={project.id}
+              className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl overflow-hidden hover:border-primary/50 transition-all duration-300"
+            >
               <div className="aspect-video relative overflow-hidden bg-slate-800">
-                <img 
-                  src={project.img} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100" 
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                 />
               </div>
               <div className="p-6 space-y-4">
-                <h3 className="text-2xl font-bold dark:text-white text-slate-900 group-hover:text-primary transition-colors">
+                <h3 className="text-2xl font-bold text-[var(--text-main)] group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-secondary text-sm leading-relaxed line-clamp-3">
+                <p className="text-[var(--text-sec)] text-sm leading-relaxed line-clamp-3">
                   {project.des}
                 </p>
                 <div className="flex items-center justify-between pt-4">
                   <div className="flex -space-x-2">
                     {project.iconLists.map((icon, idx) => (
-                      <div key={idx} className="w-9 h-9 rounded-full dark:bg-slate-950 bg-white border border-slate-200 dark:border-slate-800 flex items-center justify-center p-1.5 backdrop-blur-sm">
-                        <img src={icon} alt="tech icon" className="w-full h-full object-contain" />
+                      <div
+                        key={idx}
+                        className="w-9 h-9 rounded-full bg-[var(--bg-color)] border border-[var(--card-border)] flex items-center justify-center p-1.5 shadow-sm"
+                      >
+                        <img
+                          src={icon}
+                          alt="tech icon"
+                          className="w-full h-full object-contain"
+                        />
                       </div>
                     ))}
                   </div>
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noreferrer" 
+                  {!project.mockup && <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors"
                   >
                     Live Site <ExternalLink size={14} />
-                  </a>
+                  </a>}
                 </div>
               </div>
             </div>
@@ -88,18 +117,93 @@ const Home: React.FC<HomeProps> = ({ data }) => {
       </section>
 
       {/* 3. Work History Section */}
-      <section id="experience" className="space-y-12">
+      {/* <section id="experience" className="space-y-12">
         <div className="flex items-center gap-3 text-primary">
           <Briefcase size={28} />
-          <h2 className="text-3xl font-bold dark:text-white text-slate-900">Work History</h2>
+          <h2 className="text-3xl font-bold text-[var(--text-main)]">Work History</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {data.jobs.map((job) => (
-            <div key={job.id} className="p-8 dark:bg-slate-900/50 bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-3xl hover:border-primary/30 transition-all group">
+            <div key={job.id} className="p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl hover:border-primary/30 transition-all group">
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold dark:text-white text-slate-900 group-hover:text-primary transition-colors">{job.title}</h3>
+                <h3 className="text-2xl font-bold text-[var(--text-main)] group-hover:text-primary transition-colors">{job.title}</h3>
                 <p className="text-primary font-semibold">{job.company}</p>
-                <p className="text-secondary leading-relaxed text-sm">{job.description}</p>
+                <p className="text-[var(--text-sec)] leading-relaxed text-sm">{job.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section> */}
+      <section id="experience" className="space-y-12 py-10">
+        {/* Section Header */}
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-3 text-primary">
+            <Briefcase size={28} />
+            <h2 className="text-3xl font-bold text-(--text-main) transition-colors">
+              Professional Journey
+            </h2>
+          </div>
+          <p className="text-(--text-sec) ml-10 max-w-xl">
+            Highlighting 4 years of expertise in building high-performance
+            systems and cross-platform applications.
+          </p>
+        </div>
+
+        {/* Bento-Style Experience Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {data.jobs.map((job) => (
+            <div
+              key={job.id}
+              className={`group relative p-8 bg-(--card-bg) border border-(--card-border) rounded-[2.5rem] 
+                       overflow-hidden transition-all duration-500 hover:border-primary/50 hover:shadow-2xl 
+                       hover:shadow-primary/10 active:scale-[0.98] ${job.class || "md:col-span-2"}`}
+            >
+              {/* Subtle Glass Glow Effect on Hover */}
+              <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative z-10 h-full flex flex-col justify-between gap-6">
+                <div className="space-y-4">
+                  {/* Company Logo & Branding */}
+                  <div className="flex justify-between items-start">
+                    <div className="p-2 bg-(--bg-color) rounded-2xl border border-[var(--card-border)] shadow-sm">
+                      {/* Fallback to Lucide icon if thumbnail path is missing */}
+                      <img
+                        src={job.thumbnail}
+                        alt={job.company}
+                        className="w-20 h-20 object-contain transition-all"
+                        onError={(e) =>
+                          (e.currentTarget.src =
+                            "https://cdn-icons-png.flaticon.com/512/2682/2682065.png")
+                        }
+                      />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold tracking-tighter uppercase text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                      {job.company === "AnzilSoft Pvt Ltd"
+                        ? "Current"
+                        : "Previous"}
+                    </span>
+                  </div>
+
+                  {/* Job Details */}
+                  <div className="space-y-1">
+                    <h3 className="text-2xl font-bold text-[var(--text-main)] group-hover:text-primary transition-colors">
+                      {job.title}
+                    </h3>
+                    <p className="text-sm font-semibold text-primary/80 uppercase tracking-wide">
+                      {job.company}
+                    </p>
+                  </div>
+
+                  <p className="text-[var(--text-sec)] leading-relaxed text-sm line-clamp-3 group-hover:line-clamp-none transition-all duration-300">
+                    {job.desc}
+                  </p>
+                </div>
+
+                {/* Bottom Decorative Element */}
+                <div className="flex items-center gap-2 text-[var(--text-sec)] text-xs font-medium">
+                  <Sparkles size={14} className="text-primary" />
+                  <span>Impactful Contribution</span>
+                </div>
               </div>
             </div>
           ))}
@@ -110,15 +214,17 @@ const Home: React.FC<HomeProps> = ({ data }) => {
       <section id="tech" className="space-y-10">
         <div className="flex items-center gap-3 text-primary">
           <Terminal size={28} />
-          <h2 className="text-3xl font-bold dark:text-white text-slate-900">Tech Stack</h2>
+          <h2 className="text-3xl font-bold text-[var(--text-main)]">
+            Tech Stack
+          </h2>
         </div>
         <div className="flex flex-wrap gap-3">
           {data.techStack.map((tech) => (
-            <div 
-              key={tech} 
-              className="px-6 py-3 dark:bg-slate-900/50 bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"
+            <div
+              key={tech}
+              className="px-6 py-3 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"
             >
-              <p className="dark:text-slate-300 text-slate-700 font-mono text-sm">{tech}</p>
+              <p className="text-[var(--text-sec)] font-mono text-sm">{tech}</p>
             </div>
           ))}
         </div>
@@ -128,14 +234,21 @@ const Home: React.FC<HomeProps> = ({ data }) => {
       <section id="education" className="space-y-10">
         <div className="flex items-center gap-3 text-primary">
           <GraduationCap size={28} />
-          <h2 className="text-3xl font-bold dark:text-white text-slate-900">Education</h2>
+          <h2 className="text-3xl font-bold text-[var(--text-main)]">
+            Education
+          </h2>
         </div>
         <div className="grid gap-6">
           {data.education.map((edu, index) => (
-            <div key={index} className="p-8 dark:bg-slate-900/50 bg-slate-50 border border-slate-200 dark:border-slate-800 rounded-3xl flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+            <div
+              key={index}
+              className="p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl flex flex-col md:flex-row md:justify-between md:items-center gap-4"
+            >
               <div>
-                <h3 className="text-2xl font-bold dark:text-white text-slate-900">{edu.degree}</h3>
-                <p className="text-lg text-secondary">{edu.school}</p>
+                <h3 className="text-2xl font-bold text-[var(--text-main)]">
+                  {edu.degree}
+                </h3>
+                <p className="text-lg text-[var(--text-sec)]">{edu.school}</p>
               </div>
               <span className="text-primary font-mono font-bold px-6 py-2 bg-primary/10 border border-primary/20 rounded-xl">
                 Class of {edu.year}
@@ -147,29 +260,46 @@ const Home: React.FC<HomeProps> = ({ data }) => {
 
       {/* 6. Contact Section */}
       <section id="contact" className="pt-10">
-        <div className="p-8 md:p-16 bg-linear-to-br from-primary to-accent rounded-[3rem] space-y-8 relative overflow-hidden shadow-2xl shadow-primary/20">
+        <div
+          className="p-8 md:p-16 rounded-[3rem] space-y-8 relative overflow-hidden shadow-2xl transition-all duration-500
+               bg-[var(--contact-bg)] border border-transparent dark:border-[var(--card-border)] dark:backdrop-blur-xl"
+        >
+          {/* Content Container */}
           <div className="relative z-10 space-y-6">
-            <h2 className="text-4xl md:text-5xl font-black text-white leading-tight">Ready to build <br/>something amazing?</h2>
-            <p className="text-white/80 text-lg max-w-xl leading-relaxed">
-              I'm currently open to new roles in Data Engineering and Full-stack development. Let's discuss how my 3.8 years of experience can help your team.
+            <h2 className="text-4xl md:text-5xl font-black leading-tight text-[var(--contact-text)]">
+              Ready to build <br />
+              something amazing?
+            </h2>
+
+            <p className="text-lg max-w-xl leading-relaxed text-[var(--contact-text)] opacity-90">
+              I'm currently open to new roles in Data Engineering and Full-stack
+              development. Let's discuss how my 3.8 years of experience can help
+              your team.
             </p>
+
             <div className="pt-6">
-              <a 
-                href={`mailto:${data.name.toLowerCase().replace(' ', '.')}@example.com`} 
-                className="inline-flex items-center gap-3 px-10 py-5 bg-white text-primary font-extrabold rounded-2xl hover:bg-slate-50 transition-all hover:scale-105 shadow-2xl"
+              <a
+                href="mailto:ajayshirke137@gmail.com"
+                className="inline-flex items-center gap-3 px-10 py-5 font-extrabold rounded-2xl transition-all hover:scale-105 shadow-xl
+                     bg-[var(--card-bg)] text-primary hover:text-accent border border-[var(--card-border)]"
               >
                 <Mail size={22} />
                 Start a Conversation
               </a>
             </div>
           </div>
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-black/10 rounded-full blur-3xl" />
+
+          {/* Adaptive Decorative Blobs */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 dark:bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-black/10 dark:bg-accent/5 rounded-full blur-3xl" />
         </div>
       </section>
 
-      <footer className="pt-20 border-t border-slate-200 dark:border-slate-900 text-center text-secondary text-sm">
-        <p>© {new Date().getFullYear()} {data.name}. Engineered with React & TypeScript.</p>
+      <footer className="pt-20 border-t border-[var(--card-border)] text-center text-[var(--text-sec)] text-sm">
+        <p>
+          © {new Date().getFullYear()} {data.name}. Engineered with React &
+          TypeScript.
+        </p>
       </footer>
     </main>
   );

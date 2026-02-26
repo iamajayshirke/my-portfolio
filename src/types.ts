@@ -3,8 +3,9 @@ export interface Job {
   id: number;
   title: string;
   company: string;
-  duration: string;
-  description: string;
+  desc: string;
+  class: string;
+  thumbnail: string
 }
 
 export interface Education {

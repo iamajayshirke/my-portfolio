@@ -2,32 +2,87 @@
 
 @layer base {
   :root {
-    --color-primary: #3b82f6; /* Blue */
+    /* Default: Blue Theme */
+    --primary-rgb: 59, 130, 246;   /* #3b82f6 */
+    --accent-rgb: 37, 99, 235;    /* #2563eb */
+    
+    --color-primary: #3b82f6;
     --color-secondary: #64748b;
     --color-accent: #2563eb;
+
+    /* Theme Colors - Light Mode */
+    --bg-color: #ffffff;
+    --text-main: #0f172a;
+    --text-sec: #475569;
+    --card-bg: #f1f5f9;
+    --card-border: #e2e8f0;
+    
+    /* Dynamic Glass & Gradients */
+    --hero-glow: rgba(var(--primary-rgb), 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(226, 232, 240, 0.5);
+    --contact-bg: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    --contact-text: #ffffff;
   }
 
   .dark {
+    /* Blue Dark Mode */
+    --primary-rgb: 96, 165, 250;  /* #60a5fa */
+    --accent-rgb: 59, 130, 246;   /* #3b82f6 */
+    
     --color-primary: #60a5fa;
     --color-accent: #3b82f6;
-    background-color: #020617; /* Deep slate-950 */
-    color: #f1f5f9;
-   } 
 
-  /* Custom Theme: Emerald */
+    --bg-color: #020617; 
+    --text-main: #f1f5f9;
+    --text-sec: #94a3b8;
+    --card-bg: #0f172a;
+    --card-border: #1e293b;
+    
+    --hero-glow: rgba(var(--primary-rgb), 0.15);
+    --glass-bg: rgba(15, 23, 42, 0.6); 
+    --glass-border: rgba(51, 65, 85, 0.4);
+    --contact-bg: linear-gradient(135deg, rgba(var(--primary-rgb), 0.1), rgba(var(--accent-rgb), 0.05));
+    --contact-text: var(--text-main);
+  }
+
+  /* --- Emerald Theme Overrides --- */
   [data-theme='emerald'] {
+    /* --primary-rgb: 16, 185, 129;  
+    --accent-rgb: 5, 150, 105;    
     --color-primary: #10b981;
-    --color-accent: #059669;
+    --color-accent: #059669; */
+
+     /* --primary-rgb: 59, 130, 246;  
+    --accent-rgb: 37, 99, 235;    
+    
+    --color-primary: #04bf74;
+    --color-secondary: #64748b;
+    --color-accent: #2563eb;
+
+    --bg-color: #ffffff;
+    --text-main: #009758;
+    --text-sec: #475569;
+    --card-bg: #f1f5f9;
+    --card-border: #e2e8f0;
+    
+    --hero-glow: rgba(var(--primary-rgb), 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(226, 232, 240, 0.5);
+    --contact-bg: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    --contact-text: #ffffff; */
+  }
+  
+  .dark[data-theme='emerald'] {
+    --primary-rgb: 52, 211, 153;  /* #34d399 */
+    --accent-rgb: 16, 185, 129;   /* #10b981 */
+    --color-primary: #34d399;
+    --color-accent: #10b981;
   }
 
-  /* Default Light Mode Styles */
   body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
     @apply transition-colors duration-300;
-    @apply bg-white text-slate-900 transition-colors duration-300;
-  }
-
-  /* Dark Mode Styles */
-  .dark body {
-    @apply bg-slate-950 text-slate-100;
   }
 }
