@@ -48,29 +48,10 @@
 
   /* --- Emerald Theme Overrides --- */
   [data-theme='emerald'] {
-    /* --primary-rgb: 16, 185, 129;  
+    --primary-rgb: 16, 185, 129;  
     --accent-rgb: 5, 150, 105;    
     --color-primary: #10b981;
-    --color-accent: #059669; */
-
-     /* --primary-rgb: 59, 130, 246;  
-    --accent-rgb: 37, 99, 235;    
-    
-    --color-primary: #04bf74;
-    --color-secondary: #64748b;
-    --color-accent: #2563eb;
-
-    --bg-color: #ffffff;
-    --text-main: #009758;
-    --text-sec: #475569;
-    --card-bg: #f1f5f9;
-    --card-border: #e2e8f0;
-    
-    --hero-glow: rgba(var(--primary-rgb), 0.05);
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(226, 232, 240, 0.5);
-    --contact-bg: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    --contact-text: #ffffff; */
+    --color-accent: #059669; 
   }
   
   .dark[data-theme='emerald'] {

@@ -5,7 +5,84 @@ export const initialData: PortfolioData = {
   name: "Ajay Sunil Shirke",
   role: "Software Engineer",
   experience: "4 Years",
-  techStack: ["React", "TypeScript", "Node.js", "Python", "SQL", "Tailwind"],
+  techStack: [
+    {
+      name: "ReactJS",
+      img: "/re.svg",
+    },
+    {
+      name: "TypeScript",
+      img: "/ts.svg",
+    },
+    {
+      name: "Node.js",
+      img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    },
+    {
+      name: "Python",
+      img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    },
+    {
+      name: "SQL",
+      img: "/sql.svg",
+    },
+    {
+      name: "Tailwind",
+      img: "/tail.svg",
+    },
+    {
+      name: "AWS",
+      img: "/aws.svg",
+    },
+    {
+      name: "JavaScript",
+      img: "/javascript.svg",
+    },
+    {
+      name: "Next.js",
+      img: "/next.svg",
+    },
+    {
+      name: "MongoDB",
+      img: "/mongodb.svg",
+    },
+    {
+      name: "Firebase",
+      img: "/firebase.svg",
+    },
+    {
+      name: "Strapi",
+      img: "/strapi.svg",
+    },
+    {
+      name: "Three.js",
+      img: "/three.svg",
+    },
+    {
+      name: "NativeBase",
+      img: "/NativeBase.png",
+    },
+    {
+      name: "GitHub",
+      img: "/git.svg",
+    },
+    {
+      name: "Cypress",
+      img: "/cypress.svg"
+    },
+    {
+      name: "Google Play",
+      img: "https://www.gstatic.com/android/market_images/web/play_logo_x2.png",
+    },
+    {
+      name: "Meta API",
+      img: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg",
+    },
+    {
+      name: "DSA",
+      img: "https://cdn-icons-png.flaticon.com/512/2103/2103633.png", // Icon representing algorithms/logic
+    },
+  ],
   jobs: [
     {
       id: 1,

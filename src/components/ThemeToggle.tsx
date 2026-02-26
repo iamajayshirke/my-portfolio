@@ -19,7 +19,7 @@ export const ThemeToggle = () => {
       </button>
 
       {/* Theme Selector */}
-      <div className="flex gap-2 bg-[var(--card-bg)] p-1.5 rounded-xl border border-[var(--card-border)]">
+      {/* <div className="flex gap-2 bg-[var(--card-bg)] p-1.5 rounded-xl border border-[var(--card-border)]">
         <button 
           onClick={() => setColorTheme('default')} 
           className={`w-6 h-6 rounded-lg bg-blue-500 transition-transform hover:scale-110 ${colorTheme === 'default' ? 'ring-2 ring-offset-2 ring-blue-500 ring-offset-[var(--bg-color)]' : ''}`} 
@@ -30,7 +30,7 @@ export const ThemeToggle = () => {
           className={`w-6 h-6 rounded-lg bg-emerald-500 transition-transform hover:scale-110 ${colorTheme === 'emerald' ? 'ring-2 ring-offset-2 ring-emerald-500 ring-offset-[var(--bg-color)]' : ''}`} 
           title="Emerald Growth" 
         />
-      </div>
+      </div> */}
     </div>
   );
 };

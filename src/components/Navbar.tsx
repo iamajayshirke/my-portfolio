@@ -20,6 +20,7 @@ const Navbar: React.FC = () => {
     { name: 'Skills', href: '#tech' },
     { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
+    // {name: ''}
   ];
 
   return (
@@ -40,7 +41,7 @@ const Navbar: React.FC = () => {
             <Code2 size={20} className="text-white" />
           </div>
           <span className="bg-linear-to-r from-white to-slate-400 bg-clip-text text-transparent">
-            AS.
+            Ajay Shirke.
           </span>
         </Link>
 

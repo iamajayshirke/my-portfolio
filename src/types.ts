@@ -23,12 +23,16 @@ export interface Project {
   link: string;
   mockup: boolean;
 }
+export interface Tech {
+  name: string;
+  img: string;
+}
 
 export interface PortfolioData {
   name: string;
   role: string;
   experience: string;
-  techStack: string[];
+  techStack: Tech[];
   jobs: Job[];
   education: Education[];
   projects: Project[]; 
