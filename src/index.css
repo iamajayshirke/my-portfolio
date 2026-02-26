@@ -66,4 +66,11 @@
     color: var(--text-main);
     @apply transition-colors duration-300;
   }
+
+  html {
+    /* This handles the native scroll animation */
+    scroll-behavior: smooth;
+    /* Optional: Offset for fixed navbars so headers aren't hidden */
+    scroll-padding-top: 80px; 
+  }
 }
