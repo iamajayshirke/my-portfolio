@@ -22,7 +22,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="dark:bg-slate-950 bg-white transition-colors">
+   <div className="dark:bg-slate-950 bg-slate-50 min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-300">
       <Navbar />
       <div className="max-w-5xl mx-auto px-6">
         <Routes>
