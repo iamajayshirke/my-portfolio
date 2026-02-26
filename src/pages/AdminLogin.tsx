@@ -64,15 +64,15 @@ const AdminLogin: React.FC<AdminProps> = ({ data, onSave }) => {
               <div className="flex flex-wrap gap-2">
                 {formData.techStack.map((tech, i) => (
                   <div key={i} className="flex items-center gap-2 bg-slate-950 border border-slate-800 px-3 py-1 rounded-lg">
-                    <span className="text-sm">{tech}</span>
+                    <span className="text-sm">{tech.name}</span>
                     <button onClick={() => setFormData({...formData, techStack: formData.techStack.filter((_, idx) => idx !== i)})}
                       className="text-slate-500 hover:text-red-500"><Trash2 size={14}/></button>
                   </div>
                 ))}
-                <button 
+                {/* <button 
                   onClick={() => { const t = prompt("Add skill:"); if(t) setFormData({...formData, techStack: [...formData.techStack, t]}) }}
                   className="px-3 py-1 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-lg text-sm hover:bg-blue-600/20"
-                >+ Add Tech</button>
+                >+ Add Tech</button> */}
               </div>
             </section>
 
