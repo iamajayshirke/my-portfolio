@@ -16,6 +16,7 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ data }) => {
+  console.log(data,"Data of User")
   return (
     /* Removing all hardcoded 'bg-slate' classes to let the 
        CSS Variables in index.css handle the theme switching.
@@ -108,7 +109,7 @@ const Home: React.FC<HomeProps> = ({ data }) => {
                 </p>
                 <div className="flex items-center justify-between pt-4">
                   <div className="flex -space-x-2">
-                    {project.iconLists.map((icon, idx) => (
+                    {project?.iconLists?.map((icon, idx) => (
                       <div
                         key={idx}
                         className="w-9 h-9 rounded-full bg-[var(--bg-color)] border border-[var(--card-border)] flex items-center justify-center p-1.5 shadow-sm"
@@ -278,7 +279,7 @@ const Home: React.FC<HomeProps> = ({ data }) => {
           </h2>
         </div>
         <div className="grid gap-6">
-          {data.education.map((edu, index) => (
+          {data?.education?.map((edu, index) => (
             <div
               key={index}
               className="p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl flex flex-col md:flex-row md:justify-between md:items-center gap-4"
