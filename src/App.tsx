@@ -47,8 +47,6 @@ const defaultContent: IPortfolioContent = {
 
 
 const App: React.FC = () => {
-  // 1. We need a 'user' state at the top level for the logged-in admin
-  const [adminData, setAdminData] = useState<IUser | null>(null);
 
   const handleSave = async (newData: any) => {
     try {
@@ -71,7 +69,7 @@ const App: React.FC = () => {
           <Route path="/:username" element={<PortfolioWrapper />} />
           
           {/* Admin Portal - In a real SaaS, this would use /dashboard or /settings */}
-          <Route path="/admin/manage" element={<AdminPortal data={adminData?.content || {} as any} onSave={handleSave}/>} />
+          <Route path="/admin/manage" element={<AdminPortal onSave={handleSave} />} />
         </Routes>
       </div>
       <ScrollToTop />
