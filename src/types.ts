@@ -22,6 +22,7 @@ export interface Project {
   iconLists: string[];
   link: string;
   mockup: boolean;
+  tech: string[];
 }
 export interface Tech {
   name: string;
@@ -35,7 +36,8 @@ export interface PortfolioData {
   techStack: Tech[];
   jobs: Job[];
   education: Education[];
-  projects: Project[]; 
+  projects: Project[];
+  whatsApp: string;
 }
 
 // --- Basic Building Blocks ---
