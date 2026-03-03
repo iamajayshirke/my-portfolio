@@ -19,7 +19,7 @@ const LandingPage = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       const token = await user.getIdToken(); // Get the JWT for your backend
-
+    
       // 1. Save data in Redux (which also saves to localStorage via your slice logic)
       dispatch(setCredentials({
         user: {
