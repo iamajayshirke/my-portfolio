@@ -23,13 +23,14 @@ interface AuthState {
   } | null;
   token: string | null;
   isAuthenticated: boolean;
-  
+  status: "idle" | "loading" | "succeeded" | "failed",
 }
 
 const initialState: AuthState = {
   user: null,
   token: localStorage.getItem("token"),
   isAuthenticated: !!localStorage.getItem("token"),
+  status: "idle",
 };
 
 const authSlice = createSlice({
