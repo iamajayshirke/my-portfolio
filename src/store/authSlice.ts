@@ -7,7 +7,7 @@ export const fetchPublicPortfolio = createAsyncThunk(
   "auth/fetchPublicPortfolio",
   async (username: string, { dispatch, getState, rejectWithValue }) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/portfolio/${username}`);
+      const res = await axios.get(`https://my-portfolio-api-rvxz.onrender.com/api/portfolio/${username}`);
       
       const theme = res.data.config?.theme || 'emerald';
       document.documentElement.setAttribute('data-theme', theme);
@@ -43,7 +43,7 @@ export const updatePortfolioContent = createAsyncThunk(
       const token = state.auth.token;
 
       const response = await axios.put(
-        "http://localhost:5000/api/portfolio/update",
+        "https://my-portfolio-api-rvxz.onrender.com/api/portfolio/update",
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
