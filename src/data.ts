@@ -131,6 +131,7 @@ export const initialData: PortfolioData = {
       ],
       link: "https://dev-app.ttcclear.com/",
       mockup: false,
+      tech: []
     },
     {
       id: 2,
@@ -140,6 +141,7 @@ export const initialData: PortfolioData = {
       iconLists: ["/re.svg", "/mui.svg", "/ts.svg", "/redux.svg", "/adobe.svg"],
       link: "https://anzilteamanudev.netlify.app/",
       mockup: true,
+      tech: []
     },
     {
       id: 3,
@@ -149,6 +151,7 @@ export const initialData: PortfolioData = {
       iconLists: ["/re.svg", "/mui.svg", "/javascript.svg", "/firebase.svg"],
       link: "https://play.google.com/store/apps/details?id=com.obonato.welance&hl=en_IN",
       mockup: false,
+      tech: []
     },
     {
       id: 4,
@@ -164,6 +167,7 @@ export const initialData: PortfolioData = {
       ],
       link: "https://play.google.com/store/apps/details?id=com.leavetrackerelm",
       mockup: false,
+      tech: []
     },
     {
       id: 5,
@@ -180,6 +184,7 @@ export const initialData: PortfolioData = {
       ],
       link: "https://play.google.com/store/apps/datasafety?id=com.currentPulse",
       mockup: false,
+      tech: []
     },
     {
       id: 6,
@@ -196,6 +201,8 @@ export const initialData: PortfolioData = {
       ],
       link: "https://bot.anzilsoft.com/",
       mockup: false,
+      tech: []
     },
   ],
+  whatsApp: ""
 };

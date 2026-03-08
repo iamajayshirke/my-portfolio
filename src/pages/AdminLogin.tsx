@@ -16,8 +16,6 @@ import {
   X,
   Code2,
   Link as LinkIcon,
-  Smartphone,
-  Monitor,
 } from "lucide-react";
 
 import type { IUser, IPortfolioContent } from "../types";
