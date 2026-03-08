@@ -18,7 +18,6 @@ import {
   Link as LinkIcon,
   Smartphone,
   Monitor,
-  Copy,
 } from "lucide-react";
 
 import type { IUser, IPortfolioContent } from "../types";
@@ -33,11 +32,10 @@ interface AdminProps {
   onSave: (newData: Partial<IUser>) => Promise<void>;
 }
 
-const AdminPortal: React.FC<AdminProps> = ({ onSave }) => {
+const AdminPortal: React.FC<AdminProps> = () => {
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "success">(
     "idle",
   );
-  const [copied, setCopied] = useState(false);
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
 
@@ -149,28 +147,6 @@ const AdminPortal: React.FC<AdminProps> = ({ onSave }) => {
     }
   };
 
-  const handleAddProjectTech = (pIdx: number) => {
-    const nameInput = document.getElementById(
-      `proj-tech-search-${pIdx}`,
-    ) as HTMLInputElement;
-    const name = nameInput.value;
-    const slug = name.toLowerCase().replace(/\s+/g, "").replace(/\./g, "dot");
-    if (name) {
-      const finalIconUrl = `https://cdn.simpleicons.org/${slug}`;
-      const updatedProjects = [...(userForm.content?.projects || [])];
-      updatedProjects[pIdx] = {
-        ...updatedProjects[pIdx],
-        tech: [...(updatedProjects[pIdx].tech || []), finalIconUrl],
-      };
-      updateContent({ projects: updatedProjects });
-      nameInput.value = "";
-    }
-  };
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(liveUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const cardClass =
     "bg-(--card-bg) border border-(--card-border) p-8 rounded-[2.5rem] shadow-sm transition-all duration-300";
@@ -178,8 +154,7 @@ const AdminPortal: React.FC<AdminProps> = ({ onSave }) => {
     "text-[10px] text-(--text-sec) uppercase tracking-widest font-bold mb-1 block";
   const inputClass =
     "w-full bg-(--bg-color) p-3 rounded-xl border border-(--card-border) text-(--text-main) mt-1 focus:border-primary outline-none transition-all placeholder:text-(--text-sec)/50";
-
-  const liveUrl = `${window.location.origin}/${userForm.username || "username"}`;
+const liveUrl = `${window.location.origin}/${userForm.username || "username"}`;
 
   return (
     <div className="pt-32 max-w-7xl mx-auto px-6 pb-20 space-y-8 min-h-screen bg-(--bg-color)">
@@ -212,46 +187,43 @@ const AdminPortal: React.FC<AdminProps> = ({ onSave }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="space-y-8">
-          {/* <section className={cardClass}>
-            <h3 className="text-lg font-bold flex items-center gap-2 mb-6">
-              <Settings size={18} className="text-primary" /> Identity
-            </h3>
-            <label className={labelClass}>Username</label>
-            <input
-              className={inputClass}
-              value={userForm.username}
-              onChange={(e) =>
-                setUserForm({
-                  ...userForm,
-                  username: e.target.value.toLowerCase().replace(/\s+/g, "-"),
-                })
-              }
-            />
-            <label className={labelClass + " mt-4"}>Real Name</label>
-            <input
-              className={inputClass}
-              value={userForm.content?.name}
-              onChange={(e) => updateContent({ name: e.target.value })}
-            />
-          </section> */}
-          {/* LIVE URL PREVIEW CARD */}
-          <section className={`${cardClass} relative overflow-hidden`}>
-            <div className="absolute top-0 right-0 p-4 opacity-10"><Globe size={80} className="text-primary" /></div>
-            <h3 className="text-lg font-bold text-(--text-main) flex items-center gap-2 mb-4">
-              <Globe size={18} className="text-blue-500" /> Public Link
-            </h3>
-            <div className="flex items-center gap-2 bg-(--bg-color) p-3 rounded-xl border border-(--card-border) mb-4">
-              <input readOnly value={liveUrl} className="bg-transparent text-xs font-mono text-primary outline-none w-full" />
-              <button onClick={copyToClipboard} className="text-(--text-sec) hover:text-primary transition-colors">
-                {copied ? <CheckCircle2 size={16} className="text-emerald-500" /> : <Copy size={16} />}
-              </button>
-            </div>
-            <a href={liveUrl} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-2 bg-primary/10 text-primary text-xs font-bold rounded-lg hover:bg-primary/20 transition-all">
-              View Live Portfolio <ExternalLink size={14} />
-            </a>
-          </section>
+          <section className={`${cardClass} relative overflow-hidden group`}>
+      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform duration-500">
+        <Globe size={80} className="text-primary" />
+      </div>
+      <h3 className="text-lg font-bold text-(--text-main) flex items-center gap-2 mb-4">
+        <Globe size={18} className="text-blue-500" /> Public Link
+      </h3>
+      
+      <div className="space-y-3">
+        <div className="flex items-center gap-2 bg-(--bg-color) p-3 rounded-xl border border-(--card-border) group-hover:border-primary/50 transition-colors">
+          <div className="flex-1 overflow-hidden">
+            <p className="text-[10px] text-(--text-sec) uppercase font-bold mb-0.5">Live Preview</p>
+            <p className="text-xs font-mono text-primary truncate">
+              {window.location.origin}/<span className="font-bold">{userForm.username || "username"}</span>
+            </p>
+          </div>
+          <button 
+            onClick={() => {
+              navigator.clipboard.writeText(`${window.location.origin}/${userForm.username}`);
+            }}
+            className="p-2 hover:bg-primary/10 rounded-lg transition-colors text-(--text-sec) hover:text-primary"
+          >
+          </button>
+        </div>
 
-          <section className={cardClass}>
+        <a 
+          href={liveUrl} 
+          target="_blank" 
+          rel="noreferrer" 
+          className="flex items-center justify-center gap-2 w-full py-3 bg-primary/10 text-primary text-xs font-bold rounded-xl hover:bg-primary/20 transition-all border border-primary/10"
+        >
+          Open Portfolio <ExternalLink size={14} />
+        </a>
+      </div>
+    </section>
+
+    <section className={cardClass}>
             <h3 className="text-lg font-bold flex items-center gap-2 mb-6">
               <Settings size={18} className="text-primary" /> Identity
             </h3>
@@ -342,7 +314,7 @@ const AdminPortal: React.FC<AdminProps> = ({ onSave }) => {
                   key={proj.id || pIdx}
                   className="p-6 bg-(--bg-color) rounded-3xl border border-(--card-border) space-y-4"
                 >
-                  <div className="flex items-center justify-between p-3 bg-(--bg-color) rounded-2xl border border-(--card-border)">
+                  {/* <div className="flex items-center justify-between p-3 bg-(--bg-color) rounded-2xl border border-(--card-border)">
                     <div className="flex items-center gap-3">
                       <div
                         className={`p-2 rounded-lg ${proj.mockup ? "bg-blue-500/10 text-blue-500" : "bg-emerald-500/10 text-emerald-500"}`}
@@ -381,7 +353,7 @@ const AdminPortal: React.FC<AdminProps> = ({ onSave }) => {
                         } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
                       />
                     </button>
-                  </div>
+                  </div> */}
                   {/* Header: Title & Delete */}
                   <div className="flex justify-between gap-4">
                     <input
@@ -411,7 +383,7 @@ const AdminPortal: React.FC<AdminProps> = ({ onSave }) => {
                   {/* Description */}
                   <textarea
                     placeholder="Detailed project description..."
-                    className="w-full bg-transparent text-sm outline-none border-b border-(--card-border) text-(--text-sec) min-h-[80px] py-2"
+                    className="w-full bg-transparent text-sm outline-none border-b border-(--card-border) text-(--text-sec) min-h-20 py-2"
                     value={proj.des}
                     onChange={(e) =>
                       updateArrayItem("projects", pIdx, { des: e.target.value })
