@@ -31,6 +31,7 @@ const LandingPage = () => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       const token = await user.getIdToken(); 
+      console.log("SSO Success", result, token)
       
       // Hold user data temporarily, don't dispatch to Redux yet!
       setTempUser({ user, token });
